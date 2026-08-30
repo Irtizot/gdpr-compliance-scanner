@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+*.egg-info/
+
+# PyCharm
+.idea/
+
+# Playwright
+playwright-report/
+test-results/
+
+
+data/output/*.csv
+!data/output/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment secrets
+.env

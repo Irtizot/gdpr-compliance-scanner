@@ -1,0 +1,2 @@
+site,has_robots_txt,fetch_status,blocks_cart,blocks_checkout,blocks_account,matched_disallow_rules,crawl_delay,category,scanned_at
+etsy.com,True,ok,True,False,False,cart:/cart,,partially_restricted,2026-08-30T13:54:51.606481+00:00
