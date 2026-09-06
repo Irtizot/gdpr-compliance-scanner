@@ -1,0 +1,2 @@
+site,accept_found,reject_found,accept_area,reject_area,size_ratio,accept_contrast,reject_contrast,size_flag,contrast_flag,error,scanned_at
+https://www.bbc.co.uk,True,True,10673.9,10410.4,1.03,4.53,4.53,False,False,,2026-09-06T22:06:12.453199+00:00

@@ -1,0 +1,2 @@
+site,url,page_loaded,banner_found,banner_selector_matched,accept_button_found,reject_button_found,accept_button_text,reject_button_text,error,scanned_at
+https://www.bbc.co.uk,https://www.bbc.co.uk,True,True,[id*='consent' i],True,True,Accept additional cookies,Reject additional cookies,,2026-09-06T15:38:41.813226+00:00
