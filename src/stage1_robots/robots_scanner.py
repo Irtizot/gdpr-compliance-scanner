@@ -160,7 +160,6 @@ def run_batch(sites: list[str], output_path: str = "robots_dataset.csv"):
 
 
 if __name__ == "__main__":
-    # Replace with an actual candidate site list for the study.
     # Domain only, no scheme: e.g. "example.com" not "https://example.com".
     candidate_sites = [
         "etsy.com",
