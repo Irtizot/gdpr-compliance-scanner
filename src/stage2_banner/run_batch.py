@@ -16,10 +16,14 @@ OUT_FILE = os.path.join(ROOT, "results", "pilot_results.csv")
 HEADLESS = False
 MIN_DELAY_S = 2
 MAX_DELAY_S = 5
-LIMIT = 5
+LIMIT = None
+
+BLOCK_PHRASES = ("access issue help", "access denied", "unusual activity", "tollbit",
+                 "verify you are human", "are you a robot", "captcha", "automated access",
+                 "request blocked", "attention required")
 
 FIELDS = [
-    "url", "sector", "scanned_at", "robots_status", "page_loaded", "error",
+    "url", "sector", "scanned_at", "robots_status", "http_status", "blocked", "page_loaded", "error",
     "banner_found", "banner_selector", "first_layer_pattern",
     "accept_found", "reject_found", "settings_found", "accept_label", "reject_label",
     "accept_area", "reject_area", "size_ratio", "size_flag",
@@ -53,7 +57,7 @@ def count_checkboxes(banner):
 def empty_row(url, sector):
     row = {f: "" for f in FIELDS}
     row.update({"url": url, "sector": sector, "page_loaded": False, "banner_found": False,
-                "scanned_at": datetime.now(timezone.utc).isoformat()})
+                "blocked": False, "scanned_at": datetime.now(timezone.utc).isoformat()})
     return row
 
 
@@ -67,8 +71,17 @@ def scan_site(browser, url, sector):
     try:
         page = context.new_page()
         hosts = watch_requests(page)
-        page.goto(url, wait_until="domcontentloaded", timeout=25000)
+        response = page.goto(url, wait_until="domcontentloaded", timeout=25000)
         page.wait_for_timeout(SETTLE_MS)
+        row["http_status"] = response.status if response else ""
+        try:
+            start = (page.title() + " " + page.inner_text("body", timeout=3000)[:1500]).lower()
+        except Exception:
+            start = ""
+        if (response and response.status in (401, 403, 429)) or any(p in start for p in BLOCK_PHRASES):
+            row["blocked"] = True
+            row["error"] = "blocked by site"
+            return row
         row["page_loaded"] = True
 
         tracking = summarise_tracking(url, hosts, context.cookies())
@@ -149,8 +162,8 @@ def main():
             writer.writerow(row)
             out.flush()
             print(f"[{i}/{len(todo)}] {site['url']}  robots={row['robots_status']}  "
-                  f"banner={row['banner_found']}  pattern={row['first_layer_pattern']}  "
-                  f"error={row['error'] or '-'}")
+                  f"blocked={row['blocked']}  banner={row['banner_found']}  "
+                  f"pattern={row['first_layer_pattern']}  error={row['error'] or '-'}")
             time.sleep(random.uniform(MIN_DELAY_S, MAX_DELAY_S))
         browser.close()
     print(f"\nDone. Results in {OUT_FILE}")
