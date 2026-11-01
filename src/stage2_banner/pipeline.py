@@ -1,4 +1,5 @@
 import re
+from pathlib import Path
 from urllib import robotparser
 from urllib.parse import urlparse
 
@@ -8,6 +9,7 @@ from playwright.sync_api import sync_playwright, Page
 
 USER_AGENT = "IrtizaMScDissertationBot/1.0 (+mailto:sa137@kent.ac.uk)"
 UA_PRODUCT_TOKEN = "IrtizaMScDissertationBot"
+
 
 def check_robots(url: str) -> str:
     parts = urlparse(url)
@@ -26,9 +28,10 @@ def check_robots(url: str) -> str:
     parser.parse(response.text.splitlines())
     return "allowed" if parser.can_fetch(UA_PRODUCT_TOKEN, url) else "disallowed"
 
-SETTLE_MS = 4000            # wait after page load for banners that appear late
-MIN_BANNER_AREA_PX = 4000   # ignores tiny matches such as icons or hidden wrappers
-MAX_BANNER_TEXT_CHARS = 6000  # ignores whole-page wrappers
+
+SETTLE_MS = 4000
+MIN_BANNER_AREA_PX = 4000
+MAX_BANNER_TEXT_CHARS = 6000
 BANNER_KEYWORDS = ("cookie", "consent", "privacy")
 
 BANNER_SELECTORS = [
@@ -41,7 +44,21 @@ BANNER_SELECTORS = [
 ]
 
 
+BANNER_WAIT_EXTRA_MS = 14000
+BANNER_POLL_MS = 2000
+
+
 def find_banner(page: Page):
+    result = _find_banner_once(page)
+    waited = 0
+    while result[0] is None and waited < BANNER_WAIT_EXTRA_MS:
+        page.wait_for_timeout(BANNER_POLL_MS)
+        waited += BANNER_POLL_MS
+        result = _find_banner_once(page)
+    return result
+
+
+def _find_banner_once(page: Page):
     for selector in BANNER_SELECTORS:
         matches = page.locator(selector)
         try:
@@ -85,82 +102,145 @@ def find_banner(page: Page):
             return body, f"iframe:{host}", text
         except Exception:
             continue
-
     return find_banner_by_text(page)
 
 
+FIND_BANNER_JS = """() => {
+    const WANT = /cookie|consent/i;
+    const GOOD = /\\b(accept|agree|allow|enable|got it|i understand|ok|okay|reject|decline|deny|refuse|essential only|necessary only)\\b/i;
+    const BAD = /policy|preferences|settings|manage|notice|learn more|more info/i;
+    const MAX_TEXT = 2000, MIN_AREA = 4000, MAX_UP = 10;
+    document.querySelectorAll('[data-scan-banner]').forEach(e => e.removeAttribute('data-scan-banner'));
+    const parentOf = n => n.parentElement || (n.getRootNode() instanceof ShadowRoot ? n.getRootNode().host : null);
+    const shown = e => { const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
+    const all = [];
+    const collect = root => {
+        for (const e of root.querySelectorAll('*')) { all.push(e); if (e.shadowRoot) collect(e.shadowRoot); }
+    };
+    collect(document);
+    const clickable = e => e.matches('button, a, [role="button"], input[type="button"], input[type="submit"], [onclick]')
+        || getComputedStyle(e).cursor === 'pointer';
+    let best = null, bestArea = Infinity;
+    for (const b of all) {
+        if (!clickable(b) || !shown(b)) continue;
+        if (b.closest('footer, [role="contentinfo"]')) continue;
+        const label = ((b.innerText || b.value || b.getAttribute('aria-label') || '') + '').replace(/\\s+/g, ' ').trim();
+        if (!label || label.length > 30 || !GOOD.test(label) || BAD.test(label)) continue;
+        let c = parentOf(b);
+        for (let i = 0; c && i < MAX_UP; i++, c = parentOf(c)) {
+            if (c === document.body || c === document.documentElement) break;
+            const t = (c.innerText || '').trim();
+            if (t.length > MAX_TEXT) break;
+            if (t.length >= 40 && WANT.test(t) && shown(c)) {
+                const r = c.getBoundingClientRect();
+                const area = r.width * r.height;
+                if (area >= MIN_AREA && area < bestArea) { best = c; bestArea = area; }
+                break;
+            }
+        }
+    }
+    if (!best) return false;
+    best.setAttribute('data-scan-banner', '1');
+    return true;
+}"""
+
+
 def find_banner_by_text(page: Page):
-    matches = page.get_by_text(re.compile(r"cookie|consent", re.I))
     try:
-        count = min(matches.count(), 15)
+        if not page.evaluate(FIND_BANNER_JS):
+            return None, "", ""
+        element = page.locator("[data-scan-banner='1']").first
+        text = (element.inner_text(timeout=1500) or "").lower()
+        return element, "text-fallback", text
     except Exception:
         return None, "", ""
-    for i in range(count):
-        container = matches.nth(i)
-        try:
-            if not container.is_visible():
-                continue
-            if len((container.inner_text(timeout=1000) or "").strip()) < 40:
-                continue
-        except Exception:
-            continue
-        for _ in range(MAX_LEVELS_UP + 4):
-            try:
-                if container.evaluate("e => e.tagName") in ("BODY", "HTML"):
-                    break
-                text = (container.inner_text(timeout=1500) or "").lower()
-                if len(text) > MAX_BANNER_TEXT_CHARS:
-                    break
-                box = container.bounding_box()
-                if box and box["width"] * box["height"] >= MIN_BANNER_AREA_PX:
-                    if scan_buttons(container)["accept"]:
-                        return container, "text-fallback", text
-                container = container.locator("xpath=..")
-            except Exception:
-                break
-    return None, "", ""
+
 
 REJECT_RE = re.compile(
     r"\b(reject|decline|deny|refuse|disagree|no,? thanks|do not (consent|accept|agree)|"
-    r"don['’]?t (consent|accept|agree)|necessary only|only necessary|essential only|"
+    r"don['’]?t (consent|accept|agree|enable|allow)|do not (enable|allow)|necessary only|only necessary|essential only|"
     r"only essential|continue without (accepting|agreeing))\b", re.I)
 SETTINGS_RE = re.compile(
     r"\b(manage|settings|preferences|customi[sz]e|options|more info|more options|choose|"
     r"personali[sz]e)\b", re.I)
 ACCEPT_RE = re.compile(
-    r"\b(accept|agree|allow|ok|okay|got it|i understand|yes,? i['’]?m happy|consent)\b", re.I)
+    r"\b(accept|agree|allow|enable|ok|okay|got it|i understand|yes,? i['’]?m happy|consent)\b", re.I)
 
 MAX_LEVELS_UP = 4
 
+MARK_CLICKABLE_JS = """c => {
+    const ok = new Set();
+    for (const e of c.querySelectorAll('*')) {
+        const t = (e.innerText || '').trim();
+        if (t && t.length <= 60 && getComputedStyle(e).cursor === 'pointer') ok.add(e);
+    }
+    for (const e of ok) {
+        if (!(e.parentElement && ok.has(e.parentElement))) e.setAttribute('data-scan-click', '1');
+    }
+}"""
 
-def scan_buttons(container):
-    found = {"accept": [], "reject": [], "settings": [], "elements": {}}
-    candidates = container.locator("button, a, [role='button'], input[type='button'], input[type='submit']")
+
+def read_label(element):
+    label = (element.inner_text(timeout=800) or element.get_attribute("value")
+             or element.get_attribute("aria-label") or "").strip()
+    return re.sub(r"\s+", " ", label)
+
+
+def collect_buttons(candidates, cap, found, only_missing):
     try:
-        count = min(candidates.count(), 30)
+        count = min(candidates.count(), cap)
     except Exception:
-        return found
+        return
     for i in range(count):
         element = candidates.nth(i)
         try:
             if not element.is_visible():
                 continue
-            label = (element.inner_text(timeout=800) or element.get_attribute("value")
-                     or element.get_attribute("aria-label") or "").strip()
-            label = re.sub(r"\s+", " ", label)
+            label = read_label(element)
             if not label or len(label) > 60:
                 continue
             if REJECT_RE.search(label):
-                found["reject"].append(label)
-                found["elements"].setdefault("reject", element)
+                kind = "reject"
             elif SETTINGS_RE.search(label):
-                found["settings"].append(label)
+                kind = "settings"
             elif ACCEPT_RE.search(label):
-                found["accept"].append(label)
-                found["elements"].setdefault("accept", element)
+                kind = "accept"
+            else:
+                continue
+            if only_missing and found[kind]:
+                continue
+            found[kind].append(label)
+            if kind in ("accept", "reject"):
+                found["elements"].setdefault(kind, element)
         except Exception:
             continue
+
+
+def scan_buttons(container):
+    found = {"accept": [], "reject": [], "settings": [], "elements": {}}
+    collect_buttons(container.locator(
+        "button, a, [role='button'], input[type='button'], input[type='submit']"), 30, found, False)
+    if found["accept"] and found["reject"]:
+        return found
+    try:
+        container.evaluate(MARK_CLICKABLE_JS)
+    except Exception:
+        return found
+    collect_buttons(container.locator("[data-scan-click='1']"), 120, found, True)
     return found
+
+
+WIDEN_MAX_TEXT = 5000
+
+
+def parent_of(container):
+    try:
+        parent = container.locator("xpath=..")
+        if parent.evaluate("e => e.tagName") in ("BODY", "HTML"):
+            return None
+        return parent
+    except Exception:
+        return None
 
 
 def classify_buttons(banner):
@@ -169,14 +249,26 @@ def classify_buttons(banner):
     for _ in range(MAX_LEVELS_UP + 1):
         found = scan_buttons(container)
         if found["accept"] or found["reject"] or found["settings"]:
+            break
+        container = parent_of(container)
+        if container is None:
             return found
+    else:
+        return found
+    if found["reject"] or not found["accept"]:
+        return found
+    for _ in range(MAX_LEVELS_UP):
+        container = parent_of(container)
+        if container is None:
+            break
         try:
-            parent = container.locator("xpath=..")
-            if parent.evaluate("e => e.tagName") in ("BODY", "HTML"):
+            if len(container.inner_text(timeout=1500)) > WIDEN_MAX_TEXT:
                 break
-            container = parent
         except Exception:
             break
+        wider = scan_buttons(container)
+        if wider["accept"] and wider["reject"]:
+            return wider
     return found
 
 
@@ -264,21 +356,22 @@ def compare_buttons(found):
 
 _extract = tldextract.TLDExtract(suffix_list_urls=())
 
-KNOWN_TRACKERS = (
-    "google-analytics.com", "googletagmanager.com", "doubleclick.net", "googlesyndication.com",
-    "googleadservices.com", "facebook.net", "connect.facebook.net", "hotjar.com", "criteo.com",
-    "criteo.net", "taboola.com", "outbrain.com", "adnxs.com", "scorecardresearch.com",
-    "amazon-adsystem.com", "analytics.tiktok.com", "clarity.ms", "ads.linkedin.com",
-    "bat.bing.com", "quantserve.com", "rubiconproject.com", "pubmatic.com", "casalemedia.com",
-    "openx.net", "moatads.com", "chartbeat.com", "segment.io", "mixpanel.com", "optimizely.com",
-)
+TRACKER_FILE = Path(__file__).resolve().parents[2] / "data" / "trackers" / "tracker_domains.txt"
+
+
+def load_tracker_domains():
+    if not TRACKER_FILE.exists():
+        raise FileNotFoundError(f"{TRACKER_FILE} not found. Run build_tracker_list.py first.")
+    with open(TRACKER_FILE, encoding="utf-8") as f:
+        return {line.strip().lower() for line in f if line.strip()}
+
+
+KNOWN_TRACKERS = load_tracker_domains()
 
 
 def registered_domain(host):
     parts = _extract(host or "")
-    if not parts.suffix:
-        return host or ""
-    return getattr(parts, "top_domain_under_public_suffix", None) or parts.registered_domain
+    return parts.top_domain_under_public_suffix if parts.suffix else (host or "")
 
 
 def watch_requests(page):
@@ -288,7 +381,8 @@ def watch_requests(page):
 
 
 def is_known_tracker(host):
-    return any(host == t or host.endswith("." + t) for t in KNOWN_TRACKERS)
+    parts = (host or "").lower().split(".")
+    return any(".".join(parts[i:]) in KNOWN_TRACKERS for i in range(len(parts) - 1))
 
 
 def summarise_tracking(site_url, hosts, cookies):
@@ -311,14 +405,15 @@ LEXICON = {
         r"i (hate|don['’]?t like) (saving|deals|discounts)",
     ],
     "implied_consent": [
-        r"by (continuing|using|browsing|closing|clicking)[^.]{0,80}(you )?(agree|consent|accept)",
+        r"by (continuing|using|browsing|closing|scrolling|dismissing)[^.]{0,80}?(you )?(agree|consent|accept)",
         r"if you continue (to )?(use|browse)", r"continued use of (this|our) (site|website)",
         r"(closing|dismissing) this (banner|message|notice)[^.]{0,40}(agree|accept|consent)",
     ],
     "vague_purpose": [
-        r"(improve|enhance|enrich) (your|the) (browsing )?experience", r"better experience",
-        r"(various|certain|other) purposes", r"personali[sz]e (your )?(experience|content)",
-        r"tailor(ed)? (your )?(experience|content)",
+        r"(improve|enhance|enrich|optimi[sz]e) (your|the) (browsing )?experience",
+        r"(better|improved|enhanced) (browsing )?experience",
+        r"(various|certain|other) purposes(?!,? (including|such as|namely))",
+        r"(personali[sz]e|tailor)(ed)? your (browsing )?experience",
     ],
     "pressure": [
         r"you must (accept|agree|consent)", r"don['’]?t miss out", r"limited time",
@@ -331,15 +426,7 @@ LEXICON = {k: [re.compile(p, re.I) for p in v] for k, v in LEXICON.items()}
 def wording_flags(banner_text, found):
     corpus = " ".join([banner_text] + found["accept"] + found["reject"] + found["settings"])
     corpus = re.sub(r"\s+", " ", corpus)
-    flags = {}
-    for name, patterns in LEXICON.items():
-        flags[name] = False
-        for p in patterns:
-            m = p.search(corpus)
-            if m:
-                flags[name] = True
-                print("      matched", name, "->", repr(m.group(0)))
-    return flags
+    return {name: any(p.search(corpus) for p in patterns) for name, patterns in LEXICON.items()}
 
 
 def first_layer_pattern(found: dict) -> str:
@@ -351,6 +438,7 @@ def first_layer_pattern(found: dict) -> str:
     if accept:
         return "accept_only"
     return "other"
+
 
 if __name__ == "__main__":
     test_sites = [

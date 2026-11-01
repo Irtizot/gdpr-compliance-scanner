@@ -1,12 +1,13 @@
 import csv
 import os
 import random
+import re
 import time
 from datetime import datetime, timezone
 
 from playwright.sync_api import sync_playwright
 
-from pipeline import (USER_AGENT, SETTLE_MS, check_robots, find_banner, classify_buttons,
+from pipeline import (USER_AGENT, SETTLE_MS, LEXICON, check_robots, find_banner, classify_buttons,
                       first_layer_pattern, compare_buttons, watch_requests, summarise_tracking,
                       wording_flags)
 
@@ -17,6 +18,7 @@ HEADLESS = False
 MIN_DELAY_S = 2
 MAX_DELAY_S = 5
 LIMIT = None
+FRESH_RUN = True
 
 BLOCK_PHRASES = ("access issue help", "access denied", "unusual activity", "tollbit",
                  "verify you are human", "are you a robot", "captcha", "automated access",
@@ -33,6 +35,7 @@ FIELDS = [
     "lang_confirmshaming", "lang_implied_consent", "lang_vague_purpose", "lang_pressure",
     "third_party_domains_pre_consent", "known_tracker_domains_pre_consent",
     "known_trackers", "cookies_total_pre_consent", "third_party_cookies_pre_consent",
+    "banner_text", "all_labels", "lang_matches",
 ]
 
 
@@ -52,6 +55,18 @@ def count_checkboxes(banner):
         except Exception:
             continue
     return total, prechecked
+
+
+def lexicon_matches(text, found):
+    corpus = " ".join([text] + found["accept"] + found["reject"] + found["settings"])
+    corpus = re.sub(r"\s+", " ", corpus)
+    hits = []
+    for name, patterns in LEXICON.items():
+        for p in patterns:
+            m = p.search(corpus)
+            if m:
+                hits.append(f"{name}: {m.group(0)}")
+    return " || ".join(hits)
 
 
 def empty_row(url, sector):
@@ -127,6 +142,12 @@ def scan_site(browser, url, sector):
         row["lang_implied_consent"] = flags["implied_consent"]
         row["lang_vague_purpose"] = flags["vague_purpose"]
         row["lang_pressure"] = flags["pressure"]
+
+        row["banner_text"] = re.sub(r"\s+", " ", text).strip()[:2500]
+        row["all_labels"] = " | ".join(
+            ["accept: " + "; ".join(found["accept"]), "reject: " + "; ".join(found["reject"]),
+             "settings: " + "; ".join(found["settings"])])
+        row["lang_matches"] = lexicon_matches(text, found)
     except Exception as e:
         row["error"] = str(e).splitlines()[0][:150] if str(e) else type(e).__name__
     finally:
@@ -143,6 +164,8 @@ def already_done():
 
 def main():
     os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
+    if FRESH_RUN and os.path.exists(OUT_FILE):
+        os.replace(OUT_FILE, OUT_FILE.replace(".csv", "_old.csv"))
     with open(SITES_FILE, newline="", encoding="utf-8") as f:
         sites = list(csv.DictReader(f))
     done = already_done()
