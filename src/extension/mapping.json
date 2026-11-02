@@ -1,0 +1,107 @@
+{
+  "general_note": "This tool reports observable signals on one page load. It does not decide whether a site complies with the law. Legal assessment depends on context, the full consent flow, and the applicable regulator's guidance.",
+  "refs": {
+    "gdpr_4_11": "GDPR Art. 4(11): consent must be freely given, specific, informed and unambiguous",
+    "gdpr_7": "GDPR Art. 7: conditions for consent, including that withdrawing consent must be as easy as giving it (Art. 7(3))",
+    "gdpr_r32": "GDPR Recital 32: consent requires a clear affirmative act; silence, pre-ticked boxes or inactivity do not constitute consent",
+    "eprivacy_5_3": "ePrivacy Directive Art. 5(3): storing or accessing information on a user's device requires consent unless strictly necessary",
+    "pecr_6": "PECR (UK) reg. 6: the UK implementation of the storage and access rule, with consent as defined in UK GDPR",
+    "edpb_05_2020": "EDPB Guidelines 05/2020 on consent under Regulation 2016/679",
+    "edpb_03_2022": "EDPB Guidelines 03/2022 on deceptive design patterns in social media platform interfaces (principles are often applied to consent interfaces more widely)",
+    "planet49": "CJEU, Planet49, Case C-673/17 (2019): pre-ticked checkboxes do not give valid consent for cookies"
+  },
+  "indicators": {
+    "no_reject_option": {
+      "title": "No reject option on the first layer",
+      "observed": "A button that accepts cookies was found, but no button matching a reject wording was found on the first layer.",
+      "not_observed": "A reject-style button was found on the first layer.",
+      "why": "Consent has to be as easy to refuse as to give. A first layer that offers only acceptance, or acceptance plus a settings link, can make refusal harder.",
+      "caution": "Wording such as 'Accept only essential' is read as a non-reject by the matcher, and settings pages behind a link are not opened. A button inside an unusual component may be missed.",
+      "refs": ["gdpr_7", "gdpr_4_11", "edpb_05_2020"]
+    },
+    "prechecked_box": {
+      "title": "Pre-ticked, enabled checkbox in the banner",
+      "observed": "At least one enabled checkbox inside the banner was already ticked when the page loaded.",
+      "not_observed": "No enabled, pre-ticked checkbox was found in the banner.",
+      "why": "Consent requires an active choice. Boxes that arrive ticked are the classic example of a default that does not amount to consent.",
+      "caution": "Checkboxes in a hidden second layer are counted even if the visitor never sees them. Boxes for strictly necessary cookies are often ticked and locked, so check the label before drawing a conclusion.",
+      "refs": ["planet49", "gdpr_r32"]
+    },
+    "filled_vs_link": {
+      "title": "Accept styled as a filled button, reject styled differently",
+      "observed": "The accept button has a filled background while the reject button does not (outlined or plain text).",
+      "not_observed": "No difference in filled styling between accept and reject was measured.",
+      "why": "Visual emphasis can steer a visitor toward one option. Regulators have described unequal presentation of the choices as a design pattern that can undermine free consent.",
+      "caution": "Styling differences are common and are not unlawful by themselves. The measure reads computed CSS on the first accept and reject buttons it finds.",
+      "refs": ["edpb_03_2022", "gdpr_4_11"]
+    },
+    "accept_more_contrast": {
+      "title": "Accept text has noticeably higher contrast",
+      "observed": "The text contrast of the accept button exceeds the reject button by at least 2.0 (WCAG contrast ratio).",
+      "not_observed": "No large text-contrast gap between the two buttons was measured.",
+      "why": "A faint reject button is harder to see and read, which can make refusal less likely.",
+      "caution": "This measures text against its background, not how much the whole button stands out. A prominent accept button with similar text contrast will not register.",
+      "refs": ["edpb_03_2022"]
+    },
+    "accept_much_larger": {
+      "title": "Accept button is much larger",
+      "observed": "The accept button's area is at least 1.5 times that of the reject button.",
+      "not_observed": "No large size gap between the two buttons was measured.",
+      "why": "A bigger target is easier to notice and to hit, and is one way presentation can favor acceptance.",
+      "caution": "Area is measured from the rendered boxes at the current window size. Layouts change with viewport width.",
+      "refs": ["edpb_03_2022"]
+    },
+    "confirmshaming": {
+      "title": "Guilt-tripping wording",
+      "observed": "Banner or button text matched a confirmshaming phrase (for example, a refusal phrased as a personal failing).",
+      "not_observed": "No confirmshaming phrase from the lexicon was found.",
+      "why": "Emotionally loaded refusal wording can pressure a visitor, which bears on whether consent is freely given.",
+      "caution": "The lexicon is a short list of English phrases. It will miss other wording and other languages.",
+      "refs": ["edpb_03_2022", "gdpr_4_11"]
+    },
+    "implied_consent": {
+      "title": "Implied-consent wording",
+      "observed": "The text says that continuing, scrolling or closing counts as agreement.",
+      "not_observed": "No implied-consent phrase from the lexicon was found.",
+      "why": "Consent needs a clear affirmative act. Continued browsing is generally not treated as one.",
+      "caution": "The phrase may sit in a privacy notice rather than describe how consent is collected. Read the banner before concluding anything.",
+      "refs": ["gdpr_r32", "planet49", "edpb_05_2020"]
+    },
+    "vague_purpose": {
+      "title": "Vague purpose wording",
+      "observed": "The text uses a generic purpose such as 'improve your experience' without naming specific purposes.",
+      "not_observed": "No vague-purpose phrase from the lexicon was found.",
+      "why": "Consent has to be specific and informed, so purposes should be named.",
+      "caution": "This is the least reliable signal in the evaluation. Specific purposes may be listed in a second layer that the tool does not read.",
+      "refs": ["gdpr_4_11", "edpb_05_2020"]
+    },
+    "pressure": {
+      "title": "Pressure or urgency wording",
+      "observed": "The text matched an urgency or obligation phrase such as 'you must accept'.",
+      "not_observed": "No pressure phrase from the lexicon was found.",
+      "why": "Consent that is presented as compulsory or urgent may not be freely given.",
+      "caution": "A genuine statement that a service needs cookies to function can match. Check the context.",
+      "refs": ["gdpr_4_11", "edpb_03_2022"]
+    },
+    "known_trackers": {
+      "title": "Known tracker domains contacted early",
+      "observed": "During page load and the following four seconds, the page contacted domains on the Disconnect tracker list.",
+      "not_observed": "No Disconnect-listed tracker domain was contacted in that window.",
+      "why": "Reading or writing information on a device for non-essential purposes generally needs consent first. Contact with advertising or analytics hosts before any choice is a signal worth checking.",
+      "caution": "A contact with a listed domain does not prove that identifiers were stored or read, or that the purpose was non-essential. If you accepted cookies on an earlier visit, this activity may be consent-based.",
+      "refs": ["eprivacy_5_3", "pecr_6"]
+    },
+    "third_party_cookies": {
+      "title": "Third-party cookies set early",
+      "observed": "During page load and the following four seconds, server responses set cookies for a domain other than the site's own.",
+      "not_observed": "No third-party Set-Cookie response was seen in that window.",
+      "why": "Third-party cookies set before a choice is made are a common source of consent problems.",
+      "caution": "Only cookies set through HTTP response headers are seen. Cookies written by scripts are not counted. If you accepted cookies earlier, these cookies may be consent-based.",
+      "refs": ["eprivacy_5_3", "pecr_6"]
+    }
+  },
+  "order": [
+    "no_reject_option", "prechecked_box", "filled_vs_link", "accept_more_contrast", "accept_much_larger",
+    "confirmshaming", "implied_consent", "vague_purpose", "pressure", "known_trackers", "third_party_cookies"
+  ]
+}

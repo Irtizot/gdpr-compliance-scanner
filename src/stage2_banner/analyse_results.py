@@ -3,12 +3,12 @@ import os
 from collections import Counter, defaultdict
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-IN_FILE = os.path.join(ROOT, "results", "pilot_results.csv")
-OUT_FILE = os.path.join(ROOT, "results", "category_summary.csv")
-NO_BANNER_FILE = os.path.join(ROOT, "results", "no_banner_sites.csv")
+IN_FILE = os.path.join(ROOT, "results", "eval_results.csv")
+OUT_FILE = os.path.join(ROOT, "results", "eval_category_summary.csv")
+NO_BANNER_FILE = os.path.join(ROOT, "results", "eval_no_banner_sites.csv")
 
-MIN_TESTABLE = 20   # sites where the indicator could be measured at all
-MIN_FLAGGED = 5     # sites where the indicator was present
+MIN_TESTABLE = 20
+MIN_FLAGGED = 5
 
 
 def truthy(v):
@@ -31,10 +31,10 @@ def indicators():
     loaded = lambda r: truthy(g(r, "page_loaded"))
     both = lambda r: truthy(g(r, "accept_found")) and truthy(g(r, "reject_found"))
     return [
-        ("consent behaviour", "no reject option on first layer",
+        ("consent behavior", "no reject option on first layer",
          lambda r: banner(r) and truthy(g(r, "accept_found")),
          lambda r: not truthy(g(r, "reject_found"))),
-        ("consent behaviour", "pre-ticked non-essential checkbox",
+        ("consent behavior", "pre-ticked non-essential checkbox",
          lambda r: banner(r) and num(g(r, "checkboxes_total")) > 0,
          lambda r: num(g(r, "checkboxes_prechecked_nondisabled")) > 0),
         ("visual deception", "accept much larger than reject", both, lambda r: truthy(g(r, "size_flag"))),
@@ -64,7 +64,7 @@ def main():
     print(f"\nSites in file: {len(rows)}")
     print(f"  skipped by robots.txt (disallowed or unreachable): {len(robots_skipped)}")
     print(f"  blocked by the site (access denied / bot wall):     {len(blocked)}")
-    print(f"  pages loaded and analysable:                        {len(loaded)}")
+    print(f"  pages loaded and analyzable:                        {len(loaded)}")
     print(f"     banner found:     {len(banners)} ({100 * len(banners) / len(loaded) if loaded else 0:.0f}%)")
     print(f"     no banner found:  {len(no_banner)}")
 
@@ -92,7 +92,7 @@ def main():
 
     sectors = defaultdict(lambda: [0, 0, 0])
     for r in loaded:
-        s = g(r, "sector") or "unlabelled"
+        s = g(r, "sector") or "unlabeled"
         sectors[s][0] += 1
         if truthy(g(r, "banner_found")):
             sectors[s][1] += 1

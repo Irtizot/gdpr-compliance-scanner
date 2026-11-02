@@ -1,0 +1,14 @@
+{
+  "source": "https://raw.githubusercontent.com/disconnectme/disconnect-tracking-protection/master/services.json",
+  "retrieved": "2026-10-29",
+  "sha256": "80e1bf6844c55f4901dcace193c2689c91aad3901804bd408fc3df049190e557",
+  "categories_used": [
+    "Advertising",
+    "Analytics",
+    "Social",
+    "FingerprintingInvasive",
+    "FingerprintingGeneral"
+  ],
+  "domains": 3555,
+  "license": "CC BY-NC-SA 4.0 (Disconnect, Inc.)"
+}

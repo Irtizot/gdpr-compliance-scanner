@@ -12,13 +12,14 @@ from pipeline import (USER_AGENT, SETTLE_MS, LEXICON, check_robots, find_banner,
                       wording_flags)
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-SITES_FILE = os.path.join(ROOT, "data", "output", "sites_pilot.csv")
-OUT_FILE = os.path.join(ROOT, "results", "pilot_results.csv")
+SITES_FILE = os.path.join(ROOT, "data", "output", "sites_all.csv")
+OUT_FILE = os.path.join(ROOT, "results", "all_results.csv")
+SHOTS_DIR = os.path.join(ROOT, "results", "eval_shots")
 HEADLESS = False
 MIN_DELAY_S = 2
 MAX_DELAY_S = 5
 LIMIT = None
-FRESH_RUN = True
+FRESH_RUN = False
 
 BLOCK_PHRASES = ("access issue help", "access denied", "unusual activity", "tollbit",
                  "verify you are human", "are you a robot", "captcha", "automated access",
@@ -69,6 +70,14 @@ def lexicon_matches(text, found):
     return " || ".join(hits)
 
 
+def save_shot(element, url):
+    name = re.sub(r"[^a-z0-9]+", "_", url.lower()).strip("_") + ".png"
+    try:
+        element.screenshot(path=os.path.join(SHOTS_DIR, name), timeout=5000)
+    except Exception:
+        pass
+
+
 def empty_row(url, sector):
     row = {f: "" for f in FIELDS}
     row.update({"url": url, "sector": sector, "page_loaded": False, "banner_found": False,
@@ -112,6 +121,7 @@ def scan_site(browser, url, sector):
 
         row["banner_found"] = True
         row["banner_selector"] = selector
+        save_shot(element, url)
         found = classify_buttons(element)
         row["first_layer_pattern"] = first_layer_pattern(found)
         row["accept_found"] = bool(found["accept"])
@@ -164,9 +174,10 @@ def already_done():
 
 def main():
     os.makedirs(os.path.dirname(OUT_FILE), exist_ok=True)
+    os.makedirs(SHOTS_DIR, exist_ok=True)
     if FRESH_RUN and os.path.exists(OUT_FILE):
         os.replace(OUT_FILE, OUT_FILE.replace(".csv", "_old.csv"))
-    with open(SITES_FILE, newline="", encoding="utf-8") as f:
+    with open(SITES_FILE, newline="", encoding="utf-8-sig") as f:
         sites = list(csv.DictReader(f))
     done = already_done()
     todo = [s for s in sites if s["url"] not in done]
