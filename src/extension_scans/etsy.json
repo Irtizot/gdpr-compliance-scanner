@@ -1,0 +1,108 @@
+{
+  "url": "https://www.etsy.com/",
+  "host": "www.etsy.com",
+  "observationOpen": false,
+  "scanning": false,
+  "bannerFound": true,
+  "banner": {
+    "stage": "selector",
+    "selector": "[aria-modal='true']",
+    "pollIndex": 0,
+    "detectedAt": 1793896565686,
+    "frameUrlHost": "www.etsy.com",
+    "pattern": "accept_settings",
+    "accept": [
+      "Accept All Cookies"
+    ],
+    "reject": [],
+    "settings": [
+      "Privacy Settings",
+      "Update settings"
+    ],
+    "measures": {
+      "accept": {
+        "area": 8225,
+        "font_size": 16,
+        "contrast": 1.06,
+        "style": "plain",
+        "debug": {
+          "tag": "button",
+          "cls": "wt-btn wt-btn--filled wt-mb-xs-0",
+          "bg": "rgba(0, 0, 0, 0)",
+          "ancBg": "rgb(255, 255, 255)",
+          "color": "rgb(250, 248, 245)",
+          "border": 0,
+          "dist": 0
+        }
+      },
+      "reject": null
+    },
+    "size_ratio": null,
+    "contrast_diff": null,
+    "size_flag": false,
+    "contrast_flag": false,
+    "style_asymmetry_flag": false,
+    "checkboxes_total": 0,
+    "checkboxes_prechecked": 0,
+    "lang": {
+      "confirmshaming": false,
+      "implied_consent": false,
+      "vague_purpose": false,
+      "pressure": false
+    },
+    "lang_matches": [],
+    "text": "your etsy privacy settings in order to give you the best experience, we use cookies and similar technologies for performance, analytics, personalisation, advertising, and to help our site function. want to know more? read our cookie policy. you can change your preferences any time in your privacy settings. update settings essential cookies only accept all cookies"
+  },
+  "tracking": {
+    "third_party_domains": 3,
+    "known_trackers": [],
+    "cookies_total": 4,
+    "third_party_cookies": 0,
+    "third_party_cookie_domains": []
+  },
+  "thirdPartyHosts": [
+    "i.etsystatic.com",
+    "siteintercept.qualtrics.com",
+    "transcend-cdn.com",
+    "zn9qqgp5dwqp1x5zv-etsy.siteintercept.qualtrics.com"
+  ],
+  "indicators": {
+    "no_reject_option": {
+      "state": "observed"
+    },
+    "prechecked_box": {
+      "state": "not_observed",
+      "value": 0
+    },
+    "filled_vs_link": {
+      "state": "not_measurable"
+    },
+    "accept_more_contrast": {
+      "state": "not_measurable"
+    },
+    "accept_much_larger": {
+      "state": "not_measurable"
+    },
+    "confirmshaming": {
+      "state": "not_observed"
+    },
+    "implied_consent": {
+      "state": "not_observed"
+    },
+    "vague_purpose": {
+      "state": "not_observed"
+    },
+    "pressure": {
+      "state": "not_observed"
+    },
+    "known_trackers": {
+      "state": "not_observed",
+      "value": 0
+    },
+    "third_party_cookies": {
+      "state": "not_observed",
+      "value": 0
+    }
+  },
+  "generatedAt": "2026-11-05T16:36:25.635Z"
+}
