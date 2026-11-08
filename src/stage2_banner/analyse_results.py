@@ -3,7 +3,7 @@ import os
 from collections import Counter, defaultdict
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-IN_FILE = os.path.join(ROOT, "results", "eval_results.csv")
+IN_FILE = os.path.join(ROOT, "results", "pilot_rescan_results.csv")
 OUT_FILE = os.path.join(ROOT, "results", "eval_category_summary.csv")
 NO_BANNER_FILE = os.path.join(ROOT, "results", "eval_no_banner_sites.csv")
 

@@ -1,31 +1,21 @@
-"""
-Stage 1: Robots.txt Configuration Scanner
--------------------------------------------
-Purpose: For each candidate site, fetch and parse robots.txt to determine
-whether/how cart, checkout, and account paths are restricted, BEFORE any
-content scanning (Stage 2) is attempted.
-
-Requires: pip install requests --break-system-packages
-"""
-
 import csv
+import os
 import time
 import urllib.robotparser
-from urllib.parse import urljoin
 from dataclasses import dataclass, asdict
 from datetime import datetime, timezone
+from urllib.parse import urljoin, urlparse
 
 import requests
 
+USER_AGENT = "IrtizaMScDissertationBot/1.0 (+mailto:sa137@kent.ac.uk)"
+UA_PRODUCT_TOKEN = "IrtizaMScDissertationBot"
 
-# Configuration
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.abspath(os.path.join(HERE, "..", ".."))
+SITES_FILE = os.path.join(ROOT, "data", "output", "sites_all.csv")
+OUT_FILE = os.path.join(HERE, "robots_dataset_rescan.csv")
 
-
-# scanner's identity used both to check rules and identity
-USER_AGENT = "IrtizaMScDissertationBot/1.0 (+https://your-project-info-page-or-email.example)"
-
-# Paths we care about for this project's Category 1 detection.
-# Can be extended if needed later on if the project scope widens
 PATHS_OF_INTEREST = {
     "cart": ["/cart", "/basket"],
     "checkout": ["/checkout", "/checkouts"],
@@ -33,32 +23,42 @@ PATHS_OF_INTEREST = {
 }
 
 REQUEST_TIMEOUT_SECONDS = 10
-POLITE_DELAY_SECONDS = 1.0  # being gentle between requests, independent of crawl-delay
+POLITE_DELAY_SECONDS = 1.0
 
 
 @dataclass
 class RobotsResult:
     site: str
     has_robots_txt: bool
-    fetch_status: str            # "ok", "not_found", "error"
+    fetch_status: str
     blocks_cart: bool
     blocks_checkout: bool
     blocks_account: bool
-    matched_disallow_rules: str  # semicolon-separated list, for transparency
+    matched_disallow_rules: str
     crawl_delay: str
-    category: str                # fully_open / partially_restricted / fully_restricted / no_file
+    category: str
     scanned_at: str
 
 
-def fetch_robots_txt(site: str) -> tuple[str, int | None]:
-    """Fetch the raw robots.txt text for a site. Returns (text, status_code)."""
+def read_sites():
+    sites = []
+    seen = set()
+    with open(SITES_FILE, newline="", encoding="utf-8-sig") as f:
+        for row in csv.DictReader(f):
+            url = (row.get("url") or "").strip()
+            if not url:
+                continue
+            host = urlparse(url if "//" in url else "https://" + url).netloc.lower()
+            if host and host not in seen:
+                seen.add(host)
+                sites.append(host)
+    return sites
+
+
+def fetch_robots_txt(site):
     url = urljoin(f"https://{site}", "/robots.txt")
     try:
-        resp = requests.get(
-            url,
-            headers={"User-Agent": USER_AGENT},
-            timeout=REQUEST_TIMEOUT_SECONDS,
-        )
+        resp = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=REQUEST_TIMEOUT_SECONDS)
         if resp.status_code == 200:
             return resp.text, resp.status_code
         return "", resp.status_code
@@ -66,29 +66,20 @@ def fetch_robots_txt(site: str) -> tuple[str, int | None]:
         return "", None
 
 
-def check_paths_against_parser(parser: urllib.robotparser.RobotFileParser, site: str):
-    """
-    For each category (cart/checkout/account), have to check whether any of its
-    candidate paths are disallowed for our user-agent. Also collects which
-    specific rules matched, for transparency in the output dataset.
-    """
+def check_paths(parser, site):
     blocked = {}
-    matched_rules = []
-
+    matched = []
     for category, paths in PATHS_OF_INTEREST.items():
         category_blocked = False
         for path in paths:
-            test_url = urljoin(f"https://{site}", path)
-            allowed = parser.can_fetch(USER_AGENT, test_url)
-            if not allowed:
+            if not parser.can_fetch(UA_PRODUCT_TOKEN, urljoin(f"https://{site}", path)):
                 category_blocked = True
-                matched_rules.append(f"{category}:{path}")
+                matched.append(f"{category}:{path}")
         blocked[category] = category_blocked
+    return blocked, matched
 
-    return blocked, matched_rules
 
-
-def classify(has_file: bool, blocked: dict) -> str:
+def classify(has_file, blocked):
     if not has_file:
         return "no_file"
     values = list(blocked.values())
@@ -99,17 +90,15 @@ def classify(has_file: bool, blocked: dict) -> str:
     return "partially_restricted"
 
 
-def scan_site(site: str) -> RobotsResult:
+def scan_site(site):
     text, status_code = fetch_robots_txt(site)
     now = datetime.now(timezone.utc).isoformat()
 
     if status_code == 200 and text.strip():
         parser = urllib.robotparser.RobotFileParser()
         parser.parse(text.splitlines())
-
-        blocked, matched_rules = check_paths_against_parser(parser, site)
-        crawl_delay = parser.crawl_delay(USER_AGENT) or ""
-
+        blocked, matched = check_paths(parser, site)
+        crawl_delay = parser.crawl_delay(UA_PRODUCT_TOKEN) or ""
         return RobotsResult(
             site=site,
             has_robots_txt=True,
@@ -117,15 +106,12 @@ def scan_site(site: str) -> RobotsResult:
             blocks_cart=blocked["cart"],
             blocks_checkout=blocked["checkout"],
             blocks_account=blocked["account"],
-            matched_disallow_rules="; ".join(matched_rules),
+            matched_disallow_rules="; ".join(matched),
             crawl_delay=str(crawl_delay),
             category=classify(True, blocked),
             scanned_at=now,
         )
 
-    # No robots.txt found (404) or fetch failed, treat as fully open by
-    # convention (no file = no restriction), but will log it distinctly so we
-    # can still tell "explicitly open" apart from "no file present" later.
     fetch_status = "not_found" if status_code == 404 else "error"
     return RobotsResult(
         site=site,
@@ -141,30 +127,20 @@ def scan_site(site: str) -> RobotsResult:
     )
 
 
-def run_batch(sites: list[str], output_path: str = "robots_dataset.csv"):
-    results = []
-    for i, site in enumerate(sites, start=1):
-        print(f"[{i}/{len(sites)}] Scanning {site} ...")
-        result = scan_site(site)
-        results.append(result)
-        time.sleep(POLITE_DELAY_SECONDS)
-
-    with open(output_path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=list(asdict(results[0]).keys()))
+def main():
+    sites = read_sites()
+    print(f"{len(sites)} sites read from {SITES_FILE}")
+    fields = list(RobotsResult.__dataclass_fields__.keys())
+    with open(OUT_FILE, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
-        for r in results:
-            writer.writerow(asdict(r))
-
-    print(f"\nDone. Wrote {len(results)} rows to {output_path}")
-    return results
+        for i, site in enumerate(sites, start=1):
+            print(f"[{i}/{len(sites)}] Scanning {site} ...")
+            writer.writerow(asdict(scan_site(site)))
+            f.flush()
+            time.sleep(POLITE_DELAY_SECONDS)
+    print(f"\nDone. Wrote {len(sites)} rows to {OUT_FILE}")
 
 
 if __name__ == "__main__":
-    # Domain only, no scheme: e.g. "example.com" not "https://example.com".
-    candidate_sites = [
-        "etsy.com",
-        # "somestore.com",
-        # "anotherstore.co.uk",
-    ]
-
-    run_batch(candidate_sites)
+    main()

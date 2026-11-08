@@ -1,0 +1,13 @@
+url,sector,banner_real,no_reject_option,prechecked_box,filled_vs_link,accept_more_contrast,accept_much_larger,confirmshaming,implied_consent,vague_purpose,pressure
+https://www.virginatlantic.com,travel,y,n,y,n,y,y,n,n,y,n
+https://www.bloomberg.com,news,y,y,y,n,y,y,y,y,y,y
+https://www.nationalexpress.com,travel,y,y,u,y,y,n,n,n,n,n
+https://www.ladbrokes.com,gambling,y,y,u,y,y,n,n,n,y,n
+https://www.shopify.com,software,y,n,u,n,y,y,n,n,n,n
+https://www.atlassian.com,software,y,y,u,y,y,n,y,n,n,n
+https://www.nationaltrust.org.uk,public,y,n,n,n,n,n,n,n,n,n
+https://www.opodo.co.uk,travel,n,,,,,,,,,
+https://www.asda.com,retail,y,n,u,n,n,n,n,n,n,n
+https://wecoach.gg,game-boosting,y,n,u,y,y,y,y,y,y,y
+https://www.experian.co.uk,finance,u,y,u,y,n,n,n,n,n,n
+https://www.cam.ac.uk,public,y,n,u,n,n,n,n,n,n,n

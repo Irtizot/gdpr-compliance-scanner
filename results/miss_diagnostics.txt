@@ -1,0 +1,149 @@
+======================================================================
+https://eloboss.net
+final url: https://eloboss.net/
+find_banner: nothing
+frames:
+candidates (smallest first):
+   <DIV> id='' class='sc-gkFcWv kqnLmv' shadow=False 306x51 pos=static role='' len=74
+      text: Eloboss uses cookies! By using our website you agree to our Privacy Po
+   <DIV> id='' class='sc-gbOuXE eAyCYO' shadow=False 1265x720 pos=fixed role='' len=81
+      text: Eloboss uses cookies! By using our website you agree to our Privacy Po
+   <DIV> id='' class='sc-dRFtgE gUnUbm' shadow=False 346x141 pos=relative role='' len=81
+      text: Eloboss uses cookies! By using our website you agree to our Privacy Po
+======================================================================
+https://wise.com
+final url: https://wise.com/
+find_banner: nothing
+frames:
+candidates (smallest first):
+   <DIV> id='gn-footer-bottom' class='Footer_navigation_footer__section' shadow=False 1081x133 pos=static role='' len=147
+      text: Legal Privacy policy Cookie policy Research privacy policy Complaints 
+   <DIV> id='' class='FooterGroup_navigation_group' shadow=False 1081x133 pos=static role='' len=147
+      text: Legal Privacy policy Cookie policy Research privacy policy Complaints 
+   <UL> id='' class='eds-body-2 FooterGroup_navigation_group__list Footer_navigat' shadow=False 1081x133 pos=static role='' len=147
+      text: Legal Privacy policy Cookie policy Research privacy policy Complaints 
+   <P> id='twcc__para' class='' shadow=False 710x48 pos=static role='' len=171
+      text: They let us give you a better experience, improve our products, and ke
+   <DIV> id='' class='twcc__wrapper twcc__wrapper--copy' shadow=False 770x116 pos=static role='' len=206
+      text: Are you ok with optional cookies? They let us give you a better experi
+   <DIV> id='twcc__mechanism' class='twcc twcc__overlay' shadow=False 1265x720 pos=fixed role='' len=222
+      text: Are you ok with optional cookies? They let us give you a better experi
+======================================================================
+https://www.bet365.com
+final url: https://www.bet365.com/#/HO/
+find_banner: nothing
+frames:
+candidates (smallest first):
+   <DIV> id='' class='rcc-61' shadow=False 627x42 pos=static role='' len=40
+      text: Manage Cookies Essential Only Accept All
+   <SPAN> id='' class='' shadow=False 749x31 pos=static role='' len=106
+      text: for further information on our use of cookies and how you can disable 
+   <DIV> id='' class='rcc-6' shadow=False 603x20 pos=static role='' len=110
+      text: We use cookies to deliver a better and more personalised service. For 
+   <DIV> id='' class='rcc-fc' shadow=False 613x37 pos=static role='' len=130
+      text: bet365 uses cookies We use cookies to deliver a better and more person
+   <DIV> id='' class='frm-f3 frm-c3' shadow=False 257x540 pos=static role='' len=169
+      text: Help Deposits Withdrawals Contact Us bet365 FAQ Terms and Conditions S
+   <DIV> id='' class='rcc-f' shadow=False 1280x62 pos=fixed role='' len=171
+      text: bet365 uses cookies We use cookies to deliver a better and more person
+======================================================================
+https://www.aliexpress.com
+final url: https://www.aliexpress.com/
+find_banner: nothing
+frames:
+   https://www.aliexpress.com/wp.html  (cookie/consent text, 118669 chars)
+candidates (smallest first):
+   <DIV> id='' class='_6PP81' shadow=False 590x39 pos=static role='' len=47
+      text: Personalize cookiesReject cookiesAccept cookies
+   <DIV> id='' class='_3aBc-' shadow=False 1200x48 pos=static role='' len=266
+      text: We use cookies and similar technologies to improve your experience and
+   <DIV> id='gdpr-new-container' class='_1blil' shadow=False 1265x226 pos=fixed role='' len=339
+      text: Cookie preferences Later We use cookies and similar technologies to im
+   <DIV> id='' class='_38thn' shadow=False 1200x103 pos=static role='' len=339
+      text: Cookie preferences Later We use cookies and similar technologies to im
+   <DIV> id='' class='footer-copywrite y2023 y2023' shadow=False 1280x78 pos=static role='' len=418
+      text: Intellectual Property Protection - Privacy Policy - Cookie Preferences
+   <DIV> id='' class='container' shadow=False 1104x62 pos=static role='' len=418
+      text: Intellectual Property Protection - Privacy Policy - Cookie Preferences
+======================================================================
+https://www.shein.com
+final url: https://www.shein.co.uk/?cdn_rsite=ak&ref=www&rep=dir&ret=uk
+find_banner: nothing
+frames:
+candidates (smallest first):
+   <DIV> id='' class='cmp_c_1111' shadow=False 670x180 pos=relative role='' len=870
+      text: We use cookies and similar technologies on our website to provide the 
+   <P> id='' class='' shadow=False 670x180 pos=static role='' len=870
+      text: We use cookies and similar technologies on our website to provide the 
+   <DIV> id='' class='cmp_c_1100' shadow=False 720x294 pos=absolute role='' len=908
+      text: We use cookies and similar technologies on our website to provide the 
+======================================================================
+https://www.dropbox.com
+final url: https://www.dropbox.com/
+find_banner: nothing
+frames:
+candidates (smallest first):
+   <DIV> id='' class='dwg-text dwg-font-family--atlas-grotesk dwg-font-size--14 dw' shadow=False 171x294 pos=static role='' len=120
+      text: Help center Contact us Privacy & terms Cookie policy Cookies & CCPA pr
+   <DIV> id='' class='dwg-box dwg-pb--1_5 dwg-mt--3' shadow=False 171x294 pos=static role='' len=120
+      text: Help center Contact us Privacy & terms Cookie policy Cookies & CCPA pr
+   <UL> id='' class='dwg-footer-plank__link-list dwg-stack dwg-box dwg-display--f' shadow=False 171x282 pos=static role='' len=120
+      text: Help center Contact us Privacy & terms Cookie policy Cookies & CCPA pr
+   <DIV> id='' class='dwg-flex-grid__cell dwg-box' shadow=False 195x394 pos=static role='' len=128
+      text: Support Help center Contact us Privacy & terms Cookie policy Cookies &
+   <DIV> id='' class='dwg-box dwg-pr--3' shadow=False 195x348 pos=static role='' len=128
+      text: Support Help center Contact us Privacy & terms Cookie policy Cookies &
+   <FOOTER> id='' class='' shadow=False 1265x591 pos=static role='contentinfo' len=724
+      text: Dropbox Desktop app Mobile app Integrations Features Solutions Securit
+======================================================================
+https://www.adobe.com
+final url: https://www.adobe.com/
+find_banner: nothing
+frames:
+candidates (smallest first):
+   <DIV> id='' class='feds-menu-items' shadow=False 169x440 pos=static role='' len=196
+      text: Log into your account About Careers Events Newsroom Corporate responsi
+   <UL> id='' class='' shadow=False 169x440 pos=static role='' len=196
+      text: Log into your account About Careers Events Newsroom Corporate responsi
+   <DIV> id='' class='feds-menu-column' shadow=False 169x504 pos=static role='' len=202
+      text: Adobe Log into your account About Careers Events Newsroom Corporate re
+   <DIV> id='' class='feds-menu-section' shadow=False 169x504 pos=static role='' len=202
+      text: Adobe Log into your account About Careers Events Newsroom Corporate re
+   <DIV> id='onetrust-policy-text' class='' shadow=False 1225x72 pos=static role='' len=462
+      text: Adobe and its vendors use cookies and similar technologies to improve 
+   <DIV> id='' class='default-content' shadow=False 1225x72 pos=static role='' len=462
+      text: Adobe and its vendors use cookies and similar technologies to improve 
+======================================================================
+https://www.booking.com
+final url: https://www.booking.com/?chal_t=1793282143795&force_referer=
+find_banner: FOUND #onetrust-banner-sdk
+frames:
+candidates (smallest first):
+   <P> id='' class='' shadow=False 897x52 pos=static role='' len=196
+      text: When you use Booking.com, we (Booking.com and our partners), use the f
+   <P> id='ot-analytical-cookies-p' class='' shadow=False 897x52 pos=static role='' len=219
+      text: We and our partners use analytical cookies to gain information on how 
+   <P> id='' class='' shadow=False 897x78 pos=static role='' len=345
+      text: By selecting “Accept,” you consent to the use of analytical and market
+   <P> id='ot-marketing-cookies-p' class='' shadow=False 897x104 pos=static role='' len=450
+      text: We and our partners use marketing cookies, including social media cook
+   <DIV> id='onetrust-policy-text' class='' shadow=False 903x140 pos=static role='' len=1449
+      text: When you use Booking.com, we (Booking.com and our partners), use the f
+   <DIV> id='onetrust-group-container' class='ot-sdk-eight ot-sdk-columns' shadow=False 903x202 pos=static role='' len=1473
+      text: Manage cookie settings When you use Booking.com, we (Booking.com and o
+======================================================================
+https://www.airbnb.co.uk
+final url: https://www.airbnb.co.uk/
+find_banner: nothing
+frames:
+candidates (smallest first):
+   <P> id='' class='c3lti07 atm_gi_8tx98a dir dir-ltr' shadow=False 664x60 pos=static role='' len=282
+      text: We use cookies and other technologies to personalise content, measure 
+   <DIV> id='' class='wehp6mz atm_gi_ftgil2 atm_am_kb7nvz atm_jb_hv4lt8 atm_gx_exc' shadow=False 664x100 pos=static role='' len=315
+      text: Help us improve your experience We use cookies and other technologies 
+   <DIV> id='' class='c5vrlhl atm_mk_1n9t6rb atm_f9_idpfg4 atm_vy_1osqo2v atm_wq_z' shadow=False 1265x204 pos=fixed role='' len=361
+      text: Help us improve your experience We use cookies and other technologies 
+   <SECTION> id='' class='imqckrr atm_j3_795ys9 atm_gx_1wugsn5 atm_gy_1wugsn5 atm_l8_e' shadow=False 720x204 pos=static role='' len=361
+      text: Help us improve your experience We use cookies and other technologies 
+   <DIV> id='' class='s1dowlpe atm_iy_1rxhsqz atm_l1_1wugsn5 atm_9s_1txwivl atm_ar' shadow=False 688x172 pos=static role='' len=361
+      text: Help us improve your experience We use cookies and other technologies 

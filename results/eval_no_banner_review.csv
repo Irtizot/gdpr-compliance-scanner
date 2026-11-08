@@ -1,0 +1,8 @@
+url,sector,verdict
+https://www.dunelm.com,retail,no_banner
+https://www.halifax.co.uk,finance,blocked_or_broken
+https://www.grammarly.com,software,banner_visible
+https://www.ed.ac.uk,public,banner_visible
+https://www.betfred.com,gambling,blocked_or_broken
+https://www.my5.tv,streaming,banner_visible
+https://www.primevideo.com,streaming,banner_visible

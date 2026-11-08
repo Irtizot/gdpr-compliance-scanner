@@ -1,0 +1,12 @@
+category,indicator,n_testable,n_flagged,pct_flagged,ready
+consent behavior,no reject option on first layer,39,5,12.8,True
+consent behavior,pre-ticked non-essential checkbox,4,3,75.0,False
+visual deception,accept much larger than reject,34,1,2.9,False
+visual deception,accept higher contrast than reject,34,2,5.9,False
+visual deception,"accept filled, reject link-style",34,6,17.6,True
+dark pattern language,confirmshaming wording,40,0,0.0,False
+dark pattern language,implied consent wording,40,2,5.0,False
+dark pattern language,vague purpose wording,40,14,35.0,True
+dark pattern language,pressure wording,40,0,0.0,False
+tracker activity,known tracker contacted before consent,47,33,70.2,True
+tracker activity,third-party cookie set before consent,47,22,46.8,True

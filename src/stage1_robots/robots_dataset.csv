@@ -1,2 +1,2 @@
 site,has_robots_txt,fetch_status,blocks_cart,blocks_checkout,blocks_account,matched_disallow_rules,crawl_delay,category,scanned_at
-etsy.com,True,ok,True,False,False,cart:/cart,,partially_restricted,2026-10-11T10:23:38.841702+00:00
+etsy.com,True,ok,True,False,False,cart:/cart,,partially_restricted,2026-11-08T13:57:41.302527+00:00
