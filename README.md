@@ -40,7 +40,7 @@ Run from the project root. The scan reads `data/output/sites_all.csv` and the tr
 
 ## Notes
 
-- The reference labels were produced with AI assistance from screenshots and checked by the researcher on a sample of banners. The dissertation explains the limits.
+- The reference labels were produced with AI assistance from screenshots and checked by the researcher on 12 banners. The dissertation explains the limits.
 - Screenshots of websites are not included in this repository. Scan results include the public banner wording.
 - Tracker classification uses the Disconnect `services.json` list (retrieved 2026-10-29, CC BY-NC-SA 4.0, Disconnect, Inc.). Its license terms apply to that file.
 - Scanner revision (codebook-v1): 78e91a9b2629be76c9c28d66a8206b38d803862d
