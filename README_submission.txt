@@ -33,3 +33,5 @@ Accuracy table (Chapter 5):          results/eval_metrics.csv, produced by src/s
 Parity check (Chapter 6):            results/parity_report.csv, produced by src/extension_scans/parity_check.py
 Local test pages (Chapter 6):        tests/compare_output.txt
 Installation in a fresh environment: results/clean_run_log.txt
+
+Thank you.
