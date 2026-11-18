@@ -1,0 +1,9 @@
+trackers       OK
+normal_button  OK
+overlay_div    OK
+late_div       OK
+shadow         OK
+iframe_host    OK
+footer_only    OK
+nobanner       OK
+differences: 0

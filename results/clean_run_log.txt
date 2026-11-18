@@ -1,0 +1,191 @@
+Clean run started 2026-11-18T13:49:54
+sites_all.csv: found at data\output\sites_all.csv
+sites_pilot.csv: found at data\output\sites_pilot.csv
+sites_eval.csv: found at data\output\sites_eval.csv
+tracker_domains.txt: found at data\trackers\tracker_domains.txt
+build_tracker_list.py: found at src\stage2_banner\build_tracker_list.py
+eval_results.csv: found at results\eval_results.csv
+eval_labels_claude.csv: found at results\eval_labels_claude.csv
+eval_labels_me.csv: found at results\eval_labels_me.csv
+
+> C:\Users\user\OneDrive\Desktop\GDPR\.venv\Scripts\python.exe -m venv C:\Users\user\AppData\Local\Temp\cleanenv_ts85jw2s\venv
+
+> C:\Users\user\AppData\Local\Temp\cleanenv_ts85jw2s\venv\Scripts\python.exe -m pip install -r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt
+Collecting requests>=2.31.0 (from -r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 1))
+  Using cached requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting playwright>=1.45.0 (from -r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 2))
+  Downloading playwright-1.65.2-py3-none-win_amd64.whl.metadata (3.3 kB)
+Collecting pandas>=2.2.0 (from -r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 3))
+  Downloading pandas-3.1.1-cp313-cp313-win_amd64.whl.metadata (16 kB)
+Collecting tldextract==5.4.0 (from -r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 4))
+  Using cached tldextract-5.4.0-py3-none-any.whl.metadata (9.2 kB)
+Collecting idna (from tldextract==5.4.0->-r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 4))
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting requests-file>=1.4 (from tldextract==5.4.0->-r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 4))
+  Using cached requests_file-3.0.1-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting filelock>=3.0.8 (from tldextract==5.4.0->-r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 4))
+  Downloading filelock-4.2.12-py3-none-any.whl.metadata (2.3 kB)
+Collecting charset_normalizer<4,>=2 (from requests>=2.31.0->-r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 1))
+  Downloading charset_normalizer-3.5.2-cp313-cp313-win_amd64.whl.metadata (47 kB)
+Collecting urllib3<3,>=1.26 (from requests>=2.31.0->-r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 1))
+  Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting certifi>=2023.5.7 (from requests>=2.31.0->-r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 1))
+  Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+Collecting greenlet<4.0.0,>=3.1.1 (from playwright>=1.45.0->-r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 2))
+  Downloading greenlet-3.5.6-cp313-cp313-win_amd64.whl.metadata (3.9 kB)
+Collecting numpy>=2.0.2 (from pandas>=2.2.0->-r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 3))
+  Downloading numpy-2.5.5-cp313-cp313-win_amd64.whl.metadata (6.6 kB)
+Collecting python-dateutil>=2.9.0 (from pandas>=2.2.0->-r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 3))
+  Downloading python_dateutil-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+Collecting tzdata (from pandas>=2.2.0->-r C:\Users\user\OneDrive\Desktop\GDPR\requirements.txt (line 3))
+  Downloading tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+Using cached tldextract-5.4.0-py3-none-any.whl (107 kB)
+Using cached requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading charset_normalizer-3.5.2-cp313-cp313-win_amd64.whl (206 kB)
+Downloading idna-3.20-py3-none-any.whl (69 kB)
+Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+Downloading playwright-1.65.2-py3-none-win_amd64.whl (42.7 MB)
+   ---------------------------------------- 42.7/42.7 MB 4.4 MB/s  0:00:09
+Downloading greenlet-3.5.6-cp313-cp313-win_amd64.whl (324 kB)
+Downloading pandas-3.1.1-cp313-cp313-win_amd64.whl (10.7 MB)
+   ---------------------------------------- 10.7/10.7 MB 4.6 MB/s  0:00:02
+Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+Downloading filelock-4.2.12-py3-none-any.whl (222 kB)
+Downloading numpy-2.5.5-cp313-cp313-win_amd64.whl (12.6 MB)
+   ---------------------------------------- 12.6/12.6 MB 5.3 MB/s  0:00:02
+Downloading python_dateutil-4.0.0-py3-none-any.whl (92 kB)
+Using cached requests_file-3.0.1-py2.py3-none-any.whl (4.5 kB)
+Downloading tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+Installing collected packages: urllib3, tzdata, numpy, idna, greenlet, filelock, charset_normalizer, certifi, requests, python-dateutil, playwright, requests-file, pandas, tldextract
+
+Successfully installed certifi-2026.10.23 charset_normalizer-3.5.2 filelock-4.2.12 greenlet-3.5.6 idna-3.20 numpy-2.5.5 pandas-3.1.1 playwright-1.65.2 python-dateutil-4.0.0 requests-2.34.2 requests-file-3.0.1 tldextract-5.4.0 tzdata-2026.6 urllib3-2.8.0
+
+[notice] A new release of pip is available: 26.1.2 -> 26.3
+[notice] To update, run: C:\Users\user\AppData\Local\Temp\cleanenv_ts85jw2s\venv\Scripts\python.exe -m pip install --upgrade pip
+
+> C:\Users\user\AppData\Local\Temp\cleanenv_ts85jw2s\venv\Scripts\python.exe -m pip install cryptography
+Collecting cryptography
+  Using cached cryptography-50.0.2-cp311-abi3-win_amd64.whl.metadata (4.4 kB)
+Collecting cffi>=2.0.0 (from cryptography)
+  Using cached cffi-2.1.1-cp313-cp313-win_amd64.whl.metadata (2.6 kB)
+Collecting pycparser (from cffi>=2.0.0->cryptography)
+  Using cached pycparser-3.12-py3-none-any.whl.metadata (9.7 kB)
+Using cached cryptography-50.0.2-cp311-abi3-win_amd64.whl (3.8 MB)
+Using cached cffi-2.1.1-cp313-cp313-win_amd64.whl (185 kB)
+Using cached pycparser-3.12-py3-none-any.whl (62 kB)
+Installing collected packages: pycparser, cffi, cryptography
+
+Successfully installed cffi-2.1.1 cryptography-50.0.2 pycparser-3.12
+
+[notice] A new release of pip is available: 26.1.2 -> 26.3
+[notice] To update, run: C:\Users\user\AppData\Local\Temp\cleanenv_ts85jw2s\venv\Scripts\python.exe -m pip install --upgrade pip
+
+> C:\Users\user\AppData\Local\Temp\cleanenv_ts85jw2s\venv\Scripts\python.exe -m playwright install chromium
+Downloading Chrome for Testing 159.0.8154.6 (playwright chromium v1255)[2m from https://cdn.playwright.dev/builds/cft/159.0.8154.6/win64/chrome-win64.zip[22m
+|                                                                                |   0% of 207.3 MiB
+|■■■■■■■■                                                                        |  10% of 207.3 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 207.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 207.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 207.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 207.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 207.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 207.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 207.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 207.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 207.3 MiB
+Chrome for Testing 159.0.8154.6 (playwright chromium v1255) downloaded to C:\Users\user\AppData\Local\ms-playwright\chromium-1255
+Downloading FFmpeg (playwright ffmpeg v1013)[2m from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1013/ffmpeg-win64.zip[22m
+|                                                                                |   0% of 1.6 MiB
+|■■■■■■■■                                                                        |  10% of 1.6 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 1.6 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 1.6 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 1.6 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 1.6 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 1.6 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 1.6 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 1.6 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 1.6 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 1.6 MiB
+FFmpeg (playwright ffmpeg v1013) downloaded to C:\Users\user\AppData\Local\ms-playwright\ffmpeg-1013
+Downloading Chrome Headless Shell 159.0.8154.6 (playwright chromium-headless-shell v1255)[2m from https://cdn.playwright.dev/builds/cft/159.0.8154.6/win64/chrome-headless-shell-win64.zip[22m
+|                                                                                |   0% of 123.8 MiB
+|■■■■■■■■                                                                        |  10% of 123.8 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 123.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 123.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 123.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 123.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 123.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 123.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 123.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 123.8 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 123.8 MiB
+Chrome Headless Shell 159.0.8154.6 (playwright chromium-headless-shell v1255) downloaded to C:\Users\user\AppData\Local\ms-playwright\chromium_headless_shell-1255
+
+> C:\Users\user\AppData\Local\Temp\cleanenv_ts85jw2s\venv\Scripts\python.exe -m pip freeze
+certifi==2026.10.23
+cffi==2.1.1
+charset-normalizer==3.5.2
+cryptography==50.0.2
+filelock==4.2.12
+greenlet==3.5.6
+idna==3.20
+numpy==2.5.5
+pandas==3.1.1
+playwright==1.65.2
+pycparser==3.12
+python-dateutil==4.0.0
+requests==2.34.2
+requests-file==3.0.1
+tldextract==5.4.0
+tzdata==2026.6
+urllib3==2.8.0
+
+> C:\Users\user\AppData\Local\Temp\cleanenv_ts85jw2s\venv\Scripts\python.exe -c import sys; sys.path.insert(0, 'src/stage2_banner'); import pipeline; print('pipeline imported, tracker domains loaded:', len(pipeline.KNOWN_TRACKERS))
+pipeline imported, tracker domains loaded: 3555
+
+> C:\Users\user\AppData\Local\Temp\cleanenv_ts85jw2s\venv\Scripts\python.exe C:\Users\user\OneDrive\Desktop\GDPR\src\stage2_banner\evaluate_eval.py
+Banners labeled: 40  real: 40  not a banner: 0
+Banner detection precision: 100% (91-100)
+Banner detection recall: 40 found of 44 real (4 missed in the no-banner review)
+
+indicator               TP  FP  FN  TN         precision           recall              FPR
+no_reject_option         1   4   0  33        20% (4-62)    100% (21-100)       11% (4-25)
+prechecked_box           0   2   0  34         0% (0-66)              n/a        6% (2-18)
+filled_vs_link           1   0   0  34     100% (21-100)    100% (21-100)        0% (0-10)
+accept_more_contrast     2   0  11  22     100% (34-100)       15% (4-42)        0% (0-15)
+accept_much_larger       1   0   0  34     100% (21-100)    100% (21-100)        0% (0-10)
+confirmshaming           0   0   0  38               n/a              n/a         0% (0-9)
+implied_consent          1   1   0  36        50% (9-91)    100% (21-100)        3% (0-14)
+vague_purpose            4  10   5  19       29% (12-55)      44% (19-73)      34% (20-53)
+pressure                 0   0   0  38               n/a              n/a         0% (0-9)
+
+Saved C:\Users\user\OneDrive\Desktop\GDPR\results\eval_metrics.csv
+
+Agreement between the two label sets (kappa, raw agreement, n):
+  banner_real            kappa  0.00  agreement  91%  n=11
+  no_reject_option       kappa  0.00  agreement  55%  n=11
+  prechecked_box         kappa -0.00  agreement  33%  n=3
+  filled_vs_link         kappa  0.00  agreement  55%  n=11
+  accept_more_contrast   kappa  0.35  agreement  64%  n=11
+  accept_much_larger     kappa  0.00  agreement  64%  n=11
+  confirmshaming         kappa  0.00  agreement  73%  n=11
+  implied_consent        kappa  0.00  agreement  82%  n=11
+  vague_purpose          kappa -0.04  agreement  55%  n=11
+  pressure               kappa  0.00  agreement  82%  n=11
+
+> C:\Users\user\AppData\Local\Temp\cleanenv_ts85jw2s\venv\Scripts\python.exe C:\Users\user\OneDrive\Desktop\GDPR\tests\run_all.py
+Serving http://localhost:8765 and https on 8766. Press Ctrl+C to stop.
+done
+done
+trackers       OK
+normal_button  OK
+overlay_div    OK
+late_div       OK
+shadow         OK
+iframe_host    OK
+footer_only    OK
+nobanner       OK
+differences: 0
+
+
+Clean run finished

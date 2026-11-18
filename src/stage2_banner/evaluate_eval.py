@@ -70,7 +70,7 @@ def num(v):
 SCANNER = {
     "no_reject_option": lambda r: truthy(r["accept_found"]) and not truthy(r["reject_found"]),
     "prechecked_box": lambda r: num(r["checkboxes_prechecked_nondisabled"]) > 0,
-    "filled_vs_link": lambda r: truthy(r["style_asymmetry_flag"]),
+    "filled_vs_link": lambda r: truthy(r["style_asymmetry_flag"]) and r["reject_style"] == "plain",
     "accept_more_contrast": lambda r: truthy(r["contrast_flag"]),
     "accept_much_larger": lambda r: truthy(r["size_flag"]),
     "confirmshaming": lambda r: truthy(r["lang_confirmshaming"]),

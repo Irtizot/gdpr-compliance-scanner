@@ -1,7 +1,7 @@
 indicator,TP,FP,FN,TN,precision,recall,FPR
 no_reject_option,1,4,0,33,20% (4-62),100% (21-100),11% (4-25)
 prechecked_box,0,2,0,34,0% (0-66),n/a,6% (2-18)
-filled_vs_link,1,5,0,29,17% (3-56),100% (21-100),15% (6-30)
+filled_vs_link,1,0,0,34,100% (21-100),100% (21-100),0% (0-10)
 accept_more_contrast,2,0,11,22,100% (34-100),15% (4-42),0% (0-15)
 accept_much_larger,1,0,0,34,100% (21-100),100% (21-100),0% (0-10)
 confirmshaming,0,0,0,38,n/a,n/a,0% (0-9)

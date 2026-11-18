@@ -1,0 +1,230 @@
+{
+ "trackers": {
+  "banner": true,
+  "tracking": {
+   "third_party_domains": 2,
+   "known_trackers": [
+    "doubleclick.net"
+   ],
+   "cookies_total": 2,
+   "third_party_cookies": 2
+  },
+  "selector": "[id*='cookie' i]",
+  "pattern": "accept_reject",
+  "accept": [
+   "Accept all"
+  ],
+  "reject": [
+   "Reject all"
+  ],
+  "settings": [],
+  "acc_style": "filled",
+  "rej_style": "plain",
+  "size_ratio": 15.36,
+  "contrast_diff": 2.42,
+  "size_flag": true,
+  "contrast_flag": true,
+  "style_flag": true,
+  "cb": [
+   2,
+   1
+  ],
+  "lang": {
+   "confirmshaming": false,
+   "implied_consent": true,
+   "vague_purpose": true,
+   "pressure": true
+  }
+ },
+ "normal_button": {
+  "banner": true,
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0
+  },
+  "selector": "text-fallback",
+  "pattern": "accept_reject",
+  "accept": [
+   "Accept all"
+  ],
+  "reject": [
+   "Reject all"
+  ],
+  "settings": [
+   "Manage preferences"
+  ],
+  "acc_style": "outlined",
+  "rej_style": "outlined",
+  "size_ratio": 1.04,
+  "contrast_diff": 0.0,
+  "size_flag": false,
+  "contrast_flag": false,
+  "style_flag": false,
+  "cb": [
+   0,
+   0
+  ],
+  "lang": {
+   "confirmshaming": false,
+   "implied_consent": false,
+   "vague_purpose": false,
+   "pressure": false
+  }
+ },
+ "overlay_div": {
+  "banner": true,
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0
+  },
+  "selector": "text-fallback",
+  "pattern": "accept_only",
+  "accept": [
+   "Got it"
+  ],
+  "reject": [],
+  "settings": [],
+  "acc_style": "plain",
+  "rej_style": null,
+  "size_ratio": null,
+  "contrast_diff": null,
+  "size_flag": false,
+  "contrast_flag": false,
+  "style_flag": false,
+  "cb": [
+   0,
+   0
+  ],
+  "lang": {
+   "confirmshaming": false,
+   "implied_consent": true,
+   "vague_purpose": false,
+   "pressure": false
+  }
+ },
+ "late_div": {
+  "banner": true,
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0
+  },
+  "selector": "text-fallback",
+  "pattern": "accept_reject",
+  "accept": [
+   "Accept cookies"
+  ],
+  "reject": [
+   "Reject cookies"
+  ],
+  "settings": [],
+  "acc_style": "filled",
+  "rej_style": "outlined",
+  "size_ratio": 0.98,
+  "contrast_diff": -15.43,
+  "size_flag": false,
+  "contrast_flag": false,
+  "style_flag": true,
+  "cb": [
+   0,
+   0
+  ],
+  "lang": {
+   "confirmshaming": false,
+   "implied_consent": true,
+   "vague_purpose": true,
+   "pressure": false
+  }
+ },
+ "shadow": {
+  "banner": true,
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0
+  },
+  "selector": "text-fallback",
+  "pattern": "accept_only",
+  "accept": [
+   "Accept all"
+  ],
+  "reject": [],
+  "settings": [],
+  "acc_style": "plain",
+  "rej_style": null,
+  "size_ratio": null,
+  "contrast_diff": null,
+  "size_flag": false,
+  "contrast_flag": false,
+  "style_flag": false,
+  "cb": [
+   0,
+   0
+  ],
+  "lang": {
+   "confirmshaming": false,
+   "implied_consent": false,
+   "vague_purpose": true,
+   "pressure": false
+  }
+ },
+ "iframe_host": {
+  "banner": true,
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0
+  },
+  "selector": "iframe:localhost",
+  "pattern": "accept_reject",
+  "accept": [
+   "Accept all"
+  ],
+  "reject": [
+   "Reject all"
+  ],
+  "settings": [],
+  "acc_style": "filled",
+  "rej_style": "outlined",
+  "size_ratio": 0.97,
+  "contrast_diff": -9.43,
+  "size_flag": false,
+  "contrast_flag": false,
+  "style_flag": true,
+  "cb": [
+   0,
+   0
+  ],
+  "lang": {
+   "confirmshaming": false,
+   "implied_consent": false,
+   "vague_purpose": false,
+   "pressure": false
+  }
+ },
+ "footer_only": {
+  "banner": false,
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0
+  }
+ },
+ "nobanner": {
+  "banner": false,
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0
+  }
+ }
+}

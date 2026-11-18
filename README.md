@@ -15,7 +15,7 @@ The scanner visits one landing page per site, clicks nothing, uses only publicly
 - `src/extension_scans/`: saved extension reports for the parity check
 - `data/`: site lists and the tracker list
 - `results/`: scan outputs, labels, metrics and the parity report
-- `docs/`, `tests/`: supporting files
+- `tests/`: local test pages and the scanner and extension comparison scripts
 
 ## Run
 
@@ -27,9 +27,10 @@ python src/stage2_banner/run_batch.py
 python src/stage2_banner/split_results.py
 python src/stage2_banner/analyse_results.py
 python src/stage2_banner/evaluate_eval.py
+python src/extension_scans/parity_check.py
 ```
 
-Run from the project root. Results vary slightly between runs because ad and tracker requests differ.
+Run from the project root. The scan reads `data/output/sites_all.csv` and the tracker list in `data/trackers/tracker_domains.txt`. Results vary slightly between runs because ad and tracker requests differ.
 
 ## Extension
 
@@ -39,9 +40,10 @@ Run from the project root. Results vary slightly between runs because ad and tra
 
 ## Notes
 
-- The reference labels were produced with AI assistance from screenshots and checked by the researcher on 12 sites. The dissertation explains the limits.
+- The reference labels were produced with AI assistance from screenshots and checked by the researcher on a sample of banners. The dissertation explains the limits.
 - Screenshots of websites are not included in this repository. Scan results include the public banner wording.
 - Tracker classification uses the Disconnect `services.json` list (retrieved 2026-10-29, CC BY-NC-SA 4.0, Disconnect, Inc.). Its license terms apply to that file.
+- Scanner revision (codebook-v1): 78e91a9b2629be76c9c28d66a8206b38d803862d
 
 ## Citation
 

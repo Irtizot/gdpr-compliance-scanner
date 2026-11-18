@@ -1,0 +1,861 @@
+{
+ "trackers": {
+  "url": "http://localhost:8765/trackers.html",
+  "host": "localhost",
+  "observationOpen": false,
+  "scanning": false,
+  "bannerFound": true,
+  "banner": {
+   "stage": "selector",
+   "selector": "[id*='cookie' i]",
+   "pollIndex": 0,
+   "detectedAt": 1795010120151,
+   "frameUrlHost": "localhost",
+   "pattern": "accept_reject",
+   "accept": [
+    "Accept all"
+   ],
+   "reject": [
+    "Reject all"
+   ],
+   "settings": [],
+   "measures": {
+    "accept": {
+     "area": 7713,
+     "font_size": 18,
+     "contrast": 5.27,
+     "style": "filled",
+     "debug": {
+      "tag": "button",
+      "cls": "",
+      "bg": "rgb(10, 125, 44)",
+      "ancBg": "rgb(255, 255, 255)",
+      "color": "rgb(255, 255, 255)",
+      "border": 0,
+      "dist": 348
+     }
+    },
+    "reject": {
+     "area": 502,
+     "font_size": 11,
+     "contrast": 2.85,
+     "style": "plain",
+     "debug": {
+      "tag": "a",
+      "cls": "",
+      "bg": "rgba(0, 0, 0, 0)",
+      "ancBg": "rgb(255, 255, 255)",
+      "color": "rgb(153, 153, 153)",
+      "border": 0,
+      "dist": 0
+     }
+    }
+   },
+   "size_ratio": 15.36,
+   "contrast_diff": 2.42,
+   "size_flag": true,
+   "contrast_flag": true,
+   "style_asymmetry_flag": true,
+   "checkboxes_total": 2,
+   "checkboxes_prechecked": 1,
+   "lang": {
+    "confirmshaming": false,
+    "implied_consent": true,
+    "vague_purpose": true,
+    "pressure": true
+   },
+   "lang_matches": [
+    "implied_consent: by continuing to use this site you agree",
+    "vague_purpose: improve your experience",
+    "pressure: you must accept"
+   ],
+   "text": "we use cookies to improve your experience. by continuing to use this site you agree to our cookie policy. you must accept to continue. marketing necessary accept all reject all"
+  },
+  "tracking": {
+   "third_party_domains": 2,
+   "known_trackers": [
+    "doubleclick.net"
+   ],
+   "cookies_total": 2,
+   "third_party_cookies": 2,
+   "third_party_cookie_domains": [
+    "doubleclick.net",
+    "example-cdn.test"
+   ]
+  },
+  "thirdPartyHosts": [
+   "doubleclick.net",
+   "example-cdn.test"
+  ],
+  "indicators": {
+   "no_reject_option": {
+    "state": "not_observed",
+    "value": null
+   },
+   "prechecked_box": {
+    "state": "observed",
+    "value": 1
+   },
+   "filled_vs_link": {
+    "state": "observed",
+    "value": null
+   },
+   "accept_more_contrast": {
+    "state": "observed",
+    "value": 2.42
+   },
+   "accept_much_larger": {
+    "state": "observed",
+    "value": 15.36
+   },
+   "confirmshaming": {
+    "state": "not_observed",
+    "value": null
+   },
+   "implied_consent": {
+    "state": "observed",
+    "value": null
+   },
+   "vague_purpose": {
+    "state": "observed",
+    "value": null
+   },
+   "pressure": {
+    "state": "observed",
+    "value": null
+   },
+   "known_trackers": {
+    "state": "observed",
+    "value": 1
+   },
+   "third_party_cookies": {
+    "state": "observed",
+    "value": 2
+   }
+  },
+  "generatedAt": "2026-11-18T13:55:21.116Z"
+ },
+ "normal_button": {
+  "url": "http://localhost:8765/normal_button.html",
+  "host": "localhost",
+  "observationOpen": false,
+  "scanning": false,
+  "bannerFound": true,
+  "banner": {
+   "stage": "text",
+   "selector": "text-fallback",
+   "pollIndex": 0,
+   "detectedAt": 1795010125271,
+   "frameUrlHost": "localhost",
+   "pattern": "accept_reject",
+   "accept": [
+    "Accept all"
+   ],
+   "reject": [
+    "Reject all"
+   ],
+   "settings": [
+    "Manage preferences"
+   ],
+   "measures": {
+    "accept": {
+     "area": 1547,
+     "font_size": 13.3333,
+     "contrast": 18.43,
+     "style": "outlined",
+     "debug": {
+      "tag": "button",
+      "cls": "",
+      "bg": "rgb(240, 240, 240)",
+      "ancBg": "rgb(238, 238, 238)",
+      "color": "rgb(0, 0, 0)",
+      "border": 1.6,
+      "dist": 3
+     }
+    },
+    "reject": {
+     "area": 1485,
+     "font_size": 13.3333,
+     "contrast": 18.43,
+     "style": "outlined",
+     "debug": {
+      "tag": "button",
+      "cls": "",
+      "bg": "rgb(240, 240, 240)",
+      "ancBg": "rgb(238, 238, 238)",
+      "color": "rgb(0, 0, 0)",
+      "border": 1.6,
+      "dist": 3
+     }
+    }
+   },
+   "size_ratio": 1.04,
+   "contrast_diff": 0,
+   "size_flag": false,
+   "contrast_flag": false,
+   "style_asymmetry_flag": false,
+   "checkboxes_total": 0,
+   "checkboxes_prechecked": 0,
+   "lang": {
+    "confirmshaming": false,
+    "implied_consent": false,
+    "vague_purpose": false,
+    "pressure": false
+   },
+   "lang_matches": [],
+   "text": "this site uses cookies and similar technologies for analytics. reject allaccept allmanage preferences"
+  },
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0,
+   "third_party_cookie_domains": []
+  },
+  "thirdPartyHosts": [],
+  "indicators": {
+   "no_reject_option": {
+    "state": "not_observed",
+    "value": null
+   },
+   "prechecked_box": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "filled_vs_link": {
+    "state": "not_observed",
+    "value": null
+   },
+   "accept_more_contrast": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "accept_much_larger": {
+    "state": "not_observed",
+    "value": 1.04
+   },
+   "confirmshaming": {
+    "state": "not_observed",
+    "value": null
+   },
+   "implied_consent": {
+    "state": "not_observed",
+    "value": null
+   },
+   "vague_purpose": {
+    "state": "not_observed",
+    "value": null
+   },
+   "pressure": {
+    "state": "not_observed",
+    "value": null
+   },
+   "known_trackers": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "third_party_cookies": {
+    "state": "not_observed",
+    "value": 0
+   }
+  },
+  "generatedAt": "2026-11-18T13:55:26.254Z"
+ },
+ "overlay_div": {
+  "url": "http://localhost:8765/overlay_div.html",
+  "host": "localhost",
+  "observationOpen": false,
+  "scanning": false,
+  "bannerFound": true,
+  "banner": {
+   "stage": "text",
+   "selector": "text-fallback",
+   "pollIndex": 0,
+   "detectedAt": 1795010130398,
+   "frameUrlHost": "localhost",
+   "pattern": "accept_only",
+   "accept": [
+    "Got it"
+   ],
+   "reject": [],
+   "settings": [],
+   "measures": {
+    "accept": {
+     "area": 18240,
+     "font_size": 16,
+     "contrast": 21,
+     "style": "plain",
+     "debug": {
+      "tag": "div",
+      "cls": "",
+      "bg": "rgba(0, 0, 0, 0)",
+      "ancBg": "rgb(255, 255, 255)",
+      "color": "rgb(0, 0, 0)",
+      "border": 0,
+      "dist": 0
+     }
+    },
+    "reject": null
+   },
+   "size_ratio": null,
+   "contrast_diff": null,
+   "size_flag": false,
+   "contrast_flag": false,
+   "style_asymmetry_flag": false,
+   "checkboxes_total": 0,
+   "checkboxes_prechecked": 0,
+   "lang": {
+    "confirmshaming": false,
+    "implied_consent": true,
+    "vague_purpose": false,
+    "pressure": false
+   },
+   "lang_matches": [
+    "implied_consent: by using our website you agree"
+   ],
+   "text": "eloboss uses cookies! by using our website you agree to our privacy policy. got it"
+  },
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0,
+   "third_party_cookie_domains": []
+  },
+  "thirdPartyHosts": [],
+  "indicators": {
+   "no_reject_option": {
+    "state": "observed",
+    "value": null
+   },
+   "prechecked_box": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "filled_vs_link": {
+    "state": "not_measurable",
+    "value": null
+   },
+   "accept_more_contrast": {
+    "state": "not_measurable",
+    "value": null
+   },
+   "accept_much_larger": {
+    "state": "not_measurable",
+    "value": null
+   },
+   "confirmshaming": {
+    "state": "not_observed",
+    "value": null
+   },
+   "implied_consent": {
+    "state": "observed",
+    "value": null
+   },
+   "vague_purpose": {
+    "state": "not_observed",
+    "value": null
+   },
+   "pressure": {
+    "state": "not_observed",
+    "value": null
+   },
+   "known_trackers": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "third_party_cookies": {
+    "state": "not_observed",
+    "value": 0
+   }
+  },
+  "generatedAt": "2026-11-18T13:55:31.388Z"
+ },
+ "late_div": {
+  "url": "http://localhost:8765/late_div.html",
+  "host": "localhost",
+  "observationOpen": false,
+  "scanning": false,
+  "bannerFound": true,
+  "banner": {
+   "stage": "text",
+   "selector": "text-fallback",
+   "pollIndex": 1,
+   "detectedAt": 1795010137527,
+   "frameUrlHost": "localhost",
+   "pattern": "accept_reject",
+   "accept": [
+    "Accept cookies"
+   ],
+   "reject": [
+    "Reject cookies"
+   ],
+   "settings": [],
+   "measures": {
+    "accept": {
+     "area": 3928,
+     "font_size": 16,
+     "contrast": 5.57,
+     "style": "filled",
+     "debug": {
+      "tag": "div",
+      "cls": "",
+      "bg": "rgb(0, 102, 204)",
+      "ancBg": "rgb(255, 255, 255)",
+      "color": "rgb(255, 255, 255)",
+      "border": 0,
+      "dist": 302
+     }
+    },
+    "reject": {
+     "area": 4009,
+     "font_size": 16,
+     "contrast": 21,
+     "style": "outlined",
+     "debug": {
+      "tag": "div",
+      "cls": "",
+      "bg": "rgba(0, 0, 0, 0)",
+      "ancBg": "rgb(255, 255, 255)",
+      "color": "rgb(0, 0, 0)",
+      "border": 0.8,
+      "dist": 0
+     }
+    }
+   },
+   "size_ratio": 0.98,
+   "contrast_diff": -15.43,
+   "size_flag": false,
+   "contrast_flag": false,
+   "style_asymmetry_flag": true,
+   "checkboxes_total": 0,
+   "checkboxes_prechecked": 0,
+   "lang": {
+    "confirmshaming": false,
+    "implied_consent": true,
+    "vague_purpose": true,
+    "pressure": false
+   },
+   "lang_matches": [
+    "implied_consent: by using our website you agree",
+    "vague_purpose: improve your experience"
+   ],
+   "text": "we use cookies to improve your experience. by using our website you agree.reject cookiesaccept cookies"
+  },
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0,
+   "third_party_cookie_domains": []
+  },
+  "thirdPartyHosts": [],
+  "indicators": {
+   "no_reject_option": {
+    "state": "not_observed",
+    "value": null
+   },
+   "prechecked_box": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "filled_vs_link": {
+    "state": "observed",
+    "value": null
+   },
+   "accept_more_contrast": {
+    "state": "not_observed",
+    "value": -15.43
+   },
+   "accept_much_larger": {
+    "state": "not_observed",
+    "value": 0.98
+   },
+   "confirmshaming": {
+    "state": "not_observed",
+    "value": null
+   },
+   "implied_consent": {
+    "state": "observed",
+    "value": null
+   },
+   "vague_purpose": {
+    "state": "observed",
+    "value": null
+   },
+   "pressure": {
+    "state": "not_observed",
+    "value": null
+   },
+   "known_trackers": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "third_party_cookies": {
+    "state": "not_observed",
+    "value": 0
+   }
+  },
+  "generatedAt": "2026-11-18T13:55:38.524Z"
+ },
+ "shadow": {
+  "url": "http://localhost:8765/shadow.html",
+  "host": "localhost",
+  "observationOpen": false,
+  "scanning": false,
+  "bannerFound": true,
+  "banner": {
+   "stage": "text",
+   "selector": "text-fallback",
+   "pollIndex": 0,
+   "detectedAt": 1795010142763,
+   "frameUrlHost": "localhost",
+   "pattern": "accept_only",
+   "accept": [
+    "Accept all"
+   ],
+   "reject": [],
+   "settings": [],
+   "measures": {
+    "accept": {
+     "area": 21280,
+     "font_size": 16,
+     "contrast": 21,
+     "style": "plain",
+     "debug": {
+      "tag": "div",
+      "cls": "",
+      "bg": "rgba(0, 0, 0, 0)",
+      "ancBg": "rgb(255, 255, 255)",
+      "color": "rgb(0, 0, 0)",
+      "border": 0,
+      "dist": 0
+     }
+    },
+    "reject": null
+   },
+   "size_ratio": null,
+   "contrast_diff": null,
+   "size_flag": false,
+   "contrast_flag": false,
+   "style_asymmetry_flag": false,
+   "checkboxes_total": 0,
+   "checkboxes_prechecked": 0,
+   "lang": {
+    "confirmshaming": false,
+    "implied_consent": false,
+    "vague_purpose": true,
+    "pressure": false
+   },
+   "lang_matches": [
+    "vague_purpose: improve your experience"
+   ],
+   "text": "we use cookies to improve your experience and measure traffic. accept all"
+  },
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0,
+   "third_party_cookie_domains": []
+  },
+  "thirdPartyHosts": [],
+  "indicators": {
+   "no_reject_option": {
+    "state": "observed",
+    "value": null
+   },
+   "prechecked_box": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "filled_vs_link": {
+    "state": "not_measurable",
+    "value": null
+   },
+   "accept_more_contrast": {
+    "state": "not_measurable",
+    "value": null
+   },
+   "accept_much_larger": {
+    "state": "not_measurable",
+    "value": null
+   },
+   "confirmshaming": {
+    "state": "not_observed",
+    "value": null
+   },
+   "implied_consent": {
+    "state": "not_observed",
+    "value": null
+   },
+   "vague_purpose": {
+    "state": "observed",
+    "value": null
+   },
+   "pressure": {
+    "state": "not_observed",
+    "value": null
+   },
+   "known_trackers": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "third_party_cookies": {
+    "state": "not_observed",
+    "value": 0
+   }
+  },
+  "generatedAt": "2026-11-18T13:55:43.713Z"
+ },
+ "iframe_host": {
+  "url": "http://localhost:8765/iframe_host.html",
+  "host": "localhost",
+  "observationOpen": false,
+  "scanning": false,
+  "bannerFound": true,
+  "banner": {
+   "stage": "iframe",
+   "selector": "iframe:localhost",
+   "pollIndex": 0,
+   "detectedAt": 1795010148071,
+   "frameUrlHost": "localhost",
+   "pattern": "accept_reject",
+   "accept": [
+    "Accept all"
+   ],
+   "reject": [
+    "Reject all"
+   ],
+   "settings": [],
+   "measures": {
+    "accept": {
+     "area": 3520,
+     "font_size": 13.3333,
+     "contrast": 6.48,
+     "style": "filled",
+     "debug": {
+      "tag": "button",
+      "cls": "",
+      "bg": "rgb(34, 85, 204)",
+      "ancBg": "rgb(255, 255, 255)",
+      "color": "rgb(255, 255, 255)",
+      "border": 0,
+      "dist": 283
+     }
+    },
+    "reject": {
+     "area": 3626,
+     "font_size": 13.3333,
+     "contrast": 15.91,
+     "style": "outlined",
+     "debug": {
+      "tag": "button",
+      "cls": "",
+      "bg": "rgb(255, 255, 255)",
+      "ancBg": "rgb(255, 255, 255)",
+      "color": "rgb(34, 34, 34)",
+      "border": 0.8,
+      "dist": 0
+     }
+    }
+   },
+   "size_ratio": 0.97,
+   "contrast_diff": -9.43,
+   "size_flag": false,
+   "contrast_flag": false,
+   "style_asymmetry_flag": true,
+   "checkboxes_total": 0,
+   "checkboxes_prechecked": 0,
+   "lang": {
+    "confirmshaming": false,
+    "implied_consent": false,
+    "vague_purpose": false,
+    "pressure": false
+   },
+   "lang_matches": [],
+   "text": "this site uses cookies and privacy settings. choose an option. accept all reject all"
+  },
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0,
+   "third_party_cookie_domains": []
+  },
+  "thirdPartyHosts": [],
+  "indicators": {
+   "no_reject_option": {
+    "state": "not_observed",
+    "value": null
+   },
+   "prechecked_box": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "filled_vs_link": {
+    "state": "observed",
+    "value": null
+   },
+   "accept_more_contrast": {
+    "state": "not_observed",
+    "value": -9.43
+   },
+   "accept_much_larger": {
+    "state": "not_observed",
+    "value": 0.97
+   },
+   "confirmshaming": {
+    "state": "not_observed",
+    "value": null
+   },
+   "implied_consent": {
+    "state": "not_observed",
+    "value": null
+   },
+   "vague_purpose": {
+    "state": "not_observed",
+    "value": null
+   },
+   "pressure": {
+    "state": "not_observed",
+    "value": null
+   },
+   "known_trackers": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "third_party_cookies": {
+    "state": "not_observed",
+    "value": 0
+   }
+  },
+  "generatedAt": "2026-11-18T13:55:48.969Z"
+ },
+ "footer_only": {
+  "url": "http://localhost:8765/footer_only.html",
+  "host": "localhost",
+  "observationOpen": false,
+  "scanning": false,
+  "bannerFound": false,
+  "banner": null,
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0,
+   "third_party_cookie_domains": []
+  },
+  "thirdPartyHosts": [],
+  "indicators": {
+   "no_reject_option": {
+    "state": "no_banner",
+    "value": null
+   },
+   "prechecked_box": {
+    "state": "no_banner",
+    "value": null
+   },
+   "filled_vs_link": {
+    "state": "no_banner",
+    "value": null
+   },
+   "accept_more_contrast": {
+    "state": "no_banner",
+    "value": null
+   },
+   "accept_much_larger": {
+    "state": "no_banner",
+    "value": null
+   },
+   "confirmshaming": {
+    "state": "no_banner",
+    "value": null
+   },
+   "implied_consent": {
+    "state": "no_banner",
+    "value": null
+   },
+   "vague_purpose": {
+    "state": "no_banner",
+    "value": null
+   },
+   "pressure": {
+    "state": "no_banner",
+    "value": null
+   },
+   "known_trackers": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "third_party_cookies": {
+    "state": "not_observed",
+    "value": 0
+   }
+  },
+  "generatedAt": "2026-11-18T13:56:08.118Z"
+ },
+ "nobanner": {
+  "url": "http://localhost:8765/nobanner.html",
+  "host": "localhost",
+  "observationOpen": false,
+  "scanning": false,
+  "bannerFound": false,
+  "banner": null,
+  "tracking": {
+   "third_party_domains": 0,
+   "known_trackers": [],
+   "cookies_total": 0,
+   "third_party_cookies": 0,
+   "third_party_cookie_domains": []
+  },
+  "thirdPartyHosts": [],
+  "indicators": {
+   "no_reject_option": {
+    "state": "no_banner",
+    "value": null
+   },
+   "prechecked_box": {
+    "state": "no_banner",
+    "value": null
+   },
+   "filled_vs_link": {
+    "state": "no_banner",
+    "value": null
+   },
+   "accept_more_contrast": {
+    "state": "no_banner",
+    "value": null
+   },
+   "accept_much_larger": {
+    "state": "no_banner",
+    "value": null
+   },
+   "confirmshaming": {
+    "state": "no_banner",
+    "value": null
+   },
+   "implied_consent": {
+    "state": "no_banner",
+    "value": null
+   },
+   "vague_purpose": {
+    "state": "no_banner",
+    "value": null
+   },
+   "pressure": {
+    "state": "no_banner",
+    "value": null
+   },
+   "known_trackers": {
+    "state": "not_observed",
+    "value": 0
+   },
+   "third_party_cookies": {
+    "state": "not_observed",
+    "value": 0
+   }
+  },
+  "generatedAt": "2026-11-18T13:56:27.312Z"
+ }
+}
